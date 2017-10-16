@@ -144,16 +144,16 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
                 MyBiDiPipe.sendMessage(MyMessage);
             
                 // Sleeping for 10 seconds
-                Tools.GoToSleep(10000);
+          //      Tools.GoToSleep(10000);
                 
             }
             
             // Closing the bidipipe
-            MyBiDiPipe.close();
+            //MyBiDiPipe.close();
             
             // Stopping the network
-            Tools.PopInformationMessage(Name, "Stop the JXTA network");
-            MyNetworkManager.stopNetwork();
+           // Tools.PopInformationMessage(Name, "Stop the JXTA network");
+           // MyNetworkManager.stopNetwork();
             
         } catch (IOException Ex) {
             

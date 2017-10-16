@@ -152,30 +152,35 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
                 // Sending a goodbye message !!!
                 MyMessage = new Message();
+                
+                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("InputMessage:");
+                String s = new String(in.readLine());
+                
                // Console console= System.console();
                // String s = System.console().readLine("give input:");
-                MyStringMessageElement = new StringMessageElement("HelloElement","freeText from " + Name, null);
+                MyStringMessageElement = new StringMessageElement("HelloElement",s + "from" + Name, null);
                 MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
                 MyBiDiPipe.sendMessage(MyMessage);
 
                 // Sleeping for 10 seconds
-                Tools.GoToSleep(10000);
+                //Tools.GoToSleep(10000);
                 
                 // Closing the bidi pipe
-                MyBiDiPipe.close();
+                //MyBiDiPipe.close();
 
             }
             
             // Closing the bidi pipe server
-            MyBiDiPipe.close();
+          //  MyBiDiPipe.close();
             
             // Retrieving connected peers
-            Tools.popConnectedPeers(NetPeerGroup.getRendezVousService(), Name);
+           // Tools.popConnectedPeers(NetPeerGroup.getRendezVousService(), Name);
 
             // Stopping the network
-            Tools.PopInformationMessage(Name, "Stop the JXTA network");
-            MyNetworkManager.stopNetwork();
+            //Tools.PopInformationMessage(Name, "Stop the JXTA network");
+            //MyNetworkManager.stopNetwork();
             
         } catch (IOException Ex) {
             
