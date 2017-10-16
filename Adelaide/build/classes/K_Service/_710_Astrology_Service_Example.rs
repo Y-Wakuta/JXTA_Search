@@ -1,0 +1,2 @@
+Examples.K_Service._710_Astrology_Service_Example$CustomerHandler
+Examples.K_Service._710_Astrology_Service_Example

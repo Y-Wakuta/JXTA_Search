@@ -1,0 +1,1 @@
+Examples.H_Bidirectional_Pipe_Communication.RendezVous_Adelaide_At_One_End
