@@ -1,4 +1,4 @@
-package Examples.H_Bidirectional_Pipe_Communication;
+package H_Bidirectional_Pipe_Communication;
 // To change this license header, choose License Headers in Project Properties.
 import java.sql.Connection;
 import java.sql.DriverManager;
