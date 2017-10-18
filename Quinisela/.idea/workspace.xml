@@ -11,14 +11,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Edge_Quinisela_At_The_Other_End.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Edge_Quinisela_At_The_Other_End.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/Edge_Quinisela_At_The_Other_End.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="61" column="13" lean-forward="false" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+            <state relative-caret-position="702">
+              <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding>
                 <element signature="e#0#7969#0" expanded="true" />
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JDBC.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/JDBC.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="710">
+              <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1233#1241#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -35,8 +48,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/RendezVous_Adelaide_At_One_End.java" />
-        <option value="$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/Edge_Quinisela_At_The_Other_End.java" />
-        <option value="$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/JDBC.java" />
         <option value="$PROJECT_DIR$/src/Examples/Z_Tools_And_Others/Tools.java" />
         <option value="$PROJECT_DIR$/src/Examples/L_Peer_Information/_800_Adhoc_Ping_Example.java" />
         <option value="$PROJECT_DIR$/src/Examples/A_JXTA_Connection_And_Local_Configuration/_150_Configuration_Objects.java" />
@@ -61,14 +72,15 @@
         <option value="$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_610_Working_With_A_Keystore.java" />
         <option value="$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_620_Creating_A_Custom_PSE_PeerGroup_Example.java" />
         <option value="$PROJECT_DIR$/src/Examples/G_Simple_Pipe_Communication/Edge_Dimitri_Sending_Messages.java" />
+        <option value="$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/Edge_Quinisela_At_The_Other_End.java" />
+        <option value="$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/JDBC.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="71" />
-    <option name="y" value="572" />
-    <option name="width" value="974" />
-    <option name="height" value="1020" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="-4" />
+    <option name="width" value="1080" />
+    <option name="height" value="1924" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -85,8 +97,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -128,12 +142,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Adelaide" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -290,27 +302,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="572" width="974" height="1020" extended-state="0" />
+    <frame x="0" y="-4" width="1080" height="1924" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31734693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3171521" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3526201" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17912088" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42094457" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11111111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -351,66 +364,49 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/Edge_Quinisela_At_The_Other_End.java</url>
+          <line>76</line>
+          <properties />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/JDBC.java</url>
+          <line>60</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/JDBC.java</url>
+          <line>34</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Examples/L_Peer_Information/_800_Adhoc_Ping_Example.java">
+    <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/Edge_Quinisela_At_The_Other_End.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#7969#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_600_Exporting_And_Importing_Private_Keys_And_X509_Certificates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="61" column="35" lean-forward="false" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/Edge_Teyacapan_Another_Multicast_Participant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="56" column="13" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/RendezVous_Hans_A_Multicast_Participant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/A_JXTA_Connection_And_Local_Configuration/_150_Configuration_Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="56" column="12" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/L_Peer_Information/_800_Adhoc_Ping_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_600_Exporting_And_Importing_Private_Keys_And_X509_Certificates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="61" column="35" lean-forward="false" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Examples/L_Peer_Information/_800_Adhoc_Ping_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_600_Exporting_And_Importing_Private_Keys_And_X509_Certificates.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/Edge_Teyacapan_Another_Multicast_Participant.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/RendezVous_Hans_A_Multicast_Participant.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/A_JXTA_Connection_And_Local_Configuration/_150_Configuration_Objects.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/L_Peer_Information/_800_Adhoc_Ping_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_600_Exporting_And_Importing_Private_Keys_And_X509_Certificates.java" />
     <entry file="file://$PROJECT_DIR$/src/H_Bidirectional_Pipe_Communication/RendezVous_Adelaide_At_One_End.java" />
     <entry file="file://$PROJECT_DIR$/src/Z_Tools_And_Others/Tools.java" />
     <entry file="file://$PROJECT_DIR$/src/Examples/Z_Tools_And_Others/Tools.java">
@@ -423,233 +419,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/JDBC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/RendezVous_Adelaide_At_One_End.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
           <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Examples/L_Peer_Information/_800_Adhoc_Ping_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/Edge_Teyacapan_Another_Multicast_Participant.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/RendezVous_Hans_A_Multicast_Participant.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/A_JXTA_Connection_And_Local_Configuration/_150_Configuration_Objects.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/Creating_And_Setting_Seeds.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/Edge_Anna.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/Edge_Chihiro.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/RendezVous_Aminah.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/RendezVous_Jack.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/C_Peers_And_PeerGroups/_200_Creating_IDs_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/C_Peers_And_PeerGroups/_220_Creating_A_Custom_PeerGroup_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/C_Peers_And_PeerGroups/_210_Creating_A_New_Peer_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/D_Discovering_Resources/_300_Retrieving_And_Flushing_Local_Advertisements_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/D_Discovering_Resources/Edge_Maxime_The_Socializer.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_400_Creating_An_Empty_Message_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_410_Add_String_Long_Int_Elements_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_420_Retrieving_Message_Elements_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_430_Add_ByteArray_Element_And_Retrieve_InputStream_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_440_Adding_An_Advertisement_In_Message_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_500_Customized_Advertisement_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_510_Registering_Customized_Advertisement_Instance_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_600_Exporting_And_Importing_Private_Keys_And_X509_Certificates.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_610_Working_With_A_Keystore.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_620_Creating_A_Custom_PSE_PeerGroup_Example.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/G_Simple_Pipe_Communication/Edge_Dimitri_Sending_Messages.java" />
+    <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/Edge_Quinisela_At_The_Other_End.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#7969#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/L_Peer_Information/_800_Adhoc_Ping_Example.java">
+    <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/JDBC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/Edge_Teyacapan_Another_Multicast_Participant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="56" column="13" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/J_JXTA_Multicast_Socket/RendezVous_Hans_A_Multicast_Participant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/A_JXTA_Connection_And_Local_Configuration/_150_Configuration_Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/Creating_And_Setting_Seeds.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/Edge_Anna.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/Edge_Chihiro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/RendezVous_Aminah.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/B_Exploring_Connectivity_Issues/RendezVous_Jack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/C_Peers_And_PeerGroups/_200_Creating_IDs_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/C_Peers_And_PeerGroups/_220_Creating_A_Custom_PeerGroup_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/C_Peers_And_PeerGroups/_210_Creating_A_New_Peer_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/D_Discovering_Resources/_300_Retrieving_And_Flushing_Local_Advertisements_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="43" column="7" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/D_Discovering_Resources/Edge_Maxime_The_Socializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="43" column="7" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_400_Creating_An_Empty_Message_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_410_Add_String_Long_Int_Elements_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_420_Retrieving_Message_Elements_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_430_Add_ByteArray_Element_And_Retrieve_InputStream_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_440_Adding_An_Advertisement_In_Message_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_500_Customized_Advertisement_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="56" column="30" lean-forward="false" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/E_Messages_And_Advertisements/_510_Registering_Customized_Advertisement_Instance_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_600_Exporting_And_Importing_Private_Keys_And_X509_Certificates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="69" column="7" lean-forward="false" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_610_Working_With_A_Keystore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/F_Private_Keys_X509_Certificates_And_KeyStores/_620_Creating_A_Custom_PSE_PeerGroup_Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/G_Simple_Pipe_Communication/Edge_Dimitri_Sending_Messages.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Examples/H_Bidirectional_Pipe_Communication/Edge_Quinisela_At_The_Other_End.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="61" column="13" lean-forward="false" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+        <state relative-caret-position="710">
+          <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
           <folding>
-            <element signature="e#0#7969#0" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="e#1233#1241#0" expanded="true" />
           </folding>
         </state>
       </provider>
