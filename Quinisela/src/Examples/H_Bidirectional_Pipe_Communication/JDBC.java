@@ -27,7 +27,7 @@ public class JDBC {
                     "yusuke"); // パスワード
             statement = connection.createStatement();
         } catch (Exception e) {
-            System.out.println("couldn't establish connection.");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -38,7 +38,7 @@ public class JDBC {
             // SQLの発行
             //-----------------
             //ユーザー情報のテーブル
-            resultSet = statement.executeQuery("select * from detail");
+            resultSet = statement.executeQuery(query);
 
             //-----------------
             // 値の取得
@@ -50,7 +50,7 @@ public class JDBC {
                 fields.add(rsmd.getColumnName(i));
             }
         } catch (Exception e) {
-            System.out.println("couldn't exec sql.");
+            System.out.println(e.getMessage());
         }
         return fields;
     }
@@ -72,7 +72,7 @@ public class JDBC {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("couldn't show result");
+            System.out.println(e.getMessage());
         }
     }
 

@@ -142,7 +142,7 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
                 // Sending a hello message !!!
                 Message MyMessage = new Message();
                 
-                StringMessageElement MyStringMessageElement = new StringMessageElement("HelloElement", "select * from adelaidedb;", null);
+                StringMessageElement MyStringMessageElement = new StringMessageElement("HelloElement", "select * from master_table;", null);
                 MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
                 MyBiDiPipe.sendMessage(MyMessage);
