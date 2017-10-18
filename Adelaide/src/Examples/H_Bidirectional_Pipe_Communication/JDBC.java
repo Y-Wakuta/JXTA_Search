@@ -1,4 +1,5 @@
-package H_Bidirectional_Pipe_Communication;
+
+package Examples.H_Bidirectional_Pipe_Communication;
 // To change this license header, choose License Headers in Project Properties.
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,6 +28,7 @@ public class JDBC {
                     "yusuke"); // パスワード
             statement = connection.createStatement();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -43,17 +45,18 @@ public class JDBC {
             // 値の取得
             //-----------------
             // フィールド一覧を取得
-            fields = new ArrayList<String>();
+            fields = new ArrayList<>();
             ResultSetMetaData rsmd = resultSet.getMetaData();
             for (int i = 1; i <= rsmd.getColumnCount(); i++) {
                 fields.add(rsmd.getColumnName(i));
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return fields;
     }
 
-    public void Show(List<String> fields) throws Exception {
+    public void Deserialize(List<String> fields) throws Exception {
         try {
             //結果の出力
             int rowCount = 0;
@@ -69,7 +72,8 @@ public class JDBC {
                     System.out.println(field + ":" + resultSet.getString(field));
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 

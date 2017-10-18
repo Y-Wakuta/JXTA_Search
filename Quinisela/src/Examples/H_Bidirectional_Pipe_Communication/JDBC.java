@@ -22,7 +22,7 @@ public class JDBC {
             // 接続
             //-----------------
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/adelaidedb", // "jdbc:postgresql://[場所(Domain)]:[ポート番号]/[DB名]"
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/quiniseladb", // "jdbc:postgresql://[場所(Domain)]:[ポート番号]/[DB名]"
                     "postgres", // ログインロール
                     "yusuke"); // パスワード
             statement = connection.createStatement();
