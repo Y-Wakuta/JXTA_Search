@@ -55,24 +55,20 @@ public class JDBC {
         return fields;
     }
 
-    public void Deserialize(List<String> fields) throws Exception {
+    public String Deserialize(List<String> fields) throws Exception {
+        String queryResult = "";
         try {
             //結果の出力
-            int rowCount = 0;
             while (resultSet.next()) {
-                rowCount++;
-
-                System.out.println("---------------------------------------------------");
-                System.out.println("--- Rows:" + rowCount);
-                System.out.println("---------------------------------------------------");
-
                 //値は、「resultSet.getString(<フィールド名>)」で取得する。
                 for (String field : fields) {
-                    System.out.println(field + ":" + resultSet.getString(field));
+                   queryResult +=field + ":" + resultSet.getString(field) +"\n";
                 }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }finally{
+            return queryResult;
         }
     }
 

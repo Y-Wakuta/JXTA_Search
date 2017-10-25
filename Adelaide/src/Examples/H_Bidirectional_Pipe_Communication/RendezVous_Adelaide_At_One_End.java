@@ -63,26 +63,29 @@ import net.jxta.util.JxtaBiDiPipe;
 import net.jxta.util.JxtaServerPipe;
 
 public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
-    
+
     // Static attributes
     public static final String Name = "RendezVous Adelaide, at one end";
     public static final int TcpPort = 9726;
     public static final PeerID PID = IDFactory.newPeerID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
-    
+
     public void pipeMsgEvent(PipeMsgEvent PME) {
-        
+
         // We received a message
         Message ReceivedMessage = PME.getMessage();
-        String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "HelloElement").toString();
-
+        String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult").toString();
+        String[] texts = TheText.split("\n");
+        for (String text:texts) {
+            System.out.println(text);
+        }
         // Notifying the user
-        Tools.PopInformationMessage(Name, "Received message:\n\n" + TheText);
-        
+//        Tools.PopInformationMessage(Name, "Received message:\n\n" + TheText);
+
     }
 
     public static PipeAdvertisement GetPipeAdvertisement() {
-        
+
         // Creating a Pipe Advertisement
         PipeAdvertisement MyPipeAdvertisement = (PipeAdvertisement) AdvertisementFactory.newAdvertisement(PipeAdvertisement.getAdvertisementType());
         PipeID MyPipeID = IDFactory.newPipeID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
@@ -91,25 +94,25 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
         MyPipeAdvertisement.setType(PipeService.UnicastType);
         MyPipeAdvertisement.setName("Test BidiPipe");
         MyPipeAdvertisement.setDescription("Created by " + Name);
-        
+
         return MyPipeAdvertisement;
-        
+
     }
-    
+
     public static void main(String[] args) {
-        
+
         try {
-            
+
             // Removing any existing configuration?
             Tools.CheckForExistingConfigurationDeletion(Name, ConfigurationFile);
-            
+
             // Creation of network manager
             NetworkManager MyNetworkManager = new NetworkManager(NetworkManager.ConfigMode.RENDEZVOUS,
                     Name, ConfigurationFile.toURI());
-            
+
             // Retrieving the network configurator
             NetworkConfigurator MyNetworkConfigurator = MyNetworkManager.getConfigurator();
-            
+
             // Setting more configuration
             MyNetworkConfigurator.setTcpPort(TcpPort);
             MyNetworkConfigurator.setTcpEnabled(true);
@@ -123,7 +126,7 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
             // Starting the JXTA network
             Tools.PopInformationMessage(Name, "Start the JXTA network");
             PeerGroup NetPeerGroup = MyNetworkManager.startNetwork();
-            
+
             // Waiting for other peers to connect to JXTA
             Tools.PopInformationMessage(Name, "Waiting for other peers to connect to JXTA");
 
@@ -132,61 +135,41 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
             JxtaServerPipe MyBiDiPipeServer = new JxtaServerPipe(NetPeerGroup, GetPipeAdvertisement());
             Tools.PopInformationMessage(Name, "Bidirectional pipe server created!");
             MyBiDiPipeServer.setPipeTimeout(30000);
-            
+
             JxtaBiDiPipe MyBiDiPipe = MyBiDiPipeServer.accept();
-            
+            InputStreamReader isr = new InputStreamReader(System.in);
+
             if (MyBiDiPipe != null) {
                 MyBiDiPipe.setMessageListener(MyListener);
                 Tools.PopInformationMessage(Name, "Bidirectional pipe connection established!");
+                while(true) {
+                    System.out.println("Input query:");
 
-                // Sending a hello message !!!
-                Message MyMessage = new Message();
-                
-                StringMessageElement MyStringMessageElement = new StringMessageElement("HelloElement", "select * from master_table;", null);
-                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
+                    BufferedReader bfr = new BufferedReader(isr);
+                    String query =  bfr.readLine();
+                    // Sending a query !!!
+                    Message MyMessage = new Message();
 
-                MyBiDiPipe.sendMessage(MyMessage);
+                    StringMessageElement MyStringMessageElement = new StringMessageElement("Query", query, null);
+                    MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
-                // Sleeping for 20 seconds
-                Tools.GoToSleep(20000);
+                    MyBiDiPipe.sendMessage(MyMessage);
 
-                // Sending a goodbye message !!!
-                //MyMessage = new Message();
-      
-                
-               // Console console= System.console();
-               // String s = System.console().readLine("give input:");
-               // MyStringMessageElement = new StringMessageElement("HelloElement","from" + Name, null);
-               // MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
-
-                //MyBiDiPipe.sendMessage(MyMessage);
-
-                // Sleeping for 10 seconds
-                //Tools.GoToSleep(10000);
-                
-                // Closing the bidi pipe
-                //MyBiDiPipe.close();
-
+                    // Sleeping for 20 seconds
+                    Tools.GoToSleep(20000);
+                }
             }
-            
-            // Closing the bidi pipe server
-          //  MyBiDiPipe.close();
-            
-            // Retrieving connected peers
-           // Tools.popConnectedPeers(NetPeerGroup.getRendezVousService(), Name);
 
-            // Stopping the network
-            //Tools.PopInformationMessage(Name, "Stop the JXTA network");
-            //MyNetworkManager.stopNetwork();
-            
+            AdelaideDatahandler.CloseNetwork(MyBiDiPipe,MyNetworkManager,NetPeerGroup,Name);
+
         } catch (IOException Ex) {
-            
+
             Tools.PopErrorMessage(Name, Ex.toString());
-            
+
         } catch (PeerGroupException Ex) {
-            
+
             Tools.PopErrorMessage(Name, Ex.toString());
-            
+
         }
 
     }
