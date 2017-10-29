@@ -24,3 +24,8 @@ hs_err_pid*
 #mylist
 *.tbl
 *.idx
+
+
+#setting files?
+*.xml
+
