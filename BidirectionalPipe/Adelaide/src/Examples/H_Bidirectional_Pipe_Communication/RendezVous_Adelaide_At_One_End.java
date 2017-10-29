@@ -74,11 +74,11 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
     public void pipeMsgEvent(PipeMsgEvent PME) {
         try{
-            JDBC jdbc = new JDBC();
+            JDBC jdbc = new JDBC("localhost","5432","adelaidedb");
             // We received a message
             Message ReceivedMessage = PME.getMessage();
-            String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult").toString();
-            if(TheText != null){
+            String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "Query").toString();
+            if(TheText == null){
                 String[] texts = TheText.split("\n");
                 for (String text:texts) {
                     System.out.println(text);
@@ -153,31 +153,31 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
             Tools.PopInformationMessage(Name, "Bidirectional pipe server created!");
             MyBiDiPipeServer.setPipeTimeout(30000);
 
-            JxtaBiDiPipe MyBiDiPipe = MyBiDiPipeServer.accept();
+            _myBiDiPipe = MyBiDiPipeServer.accept();
             InputStreamReader isr = new InputStreamReader(System.in);
 
-            if (MyBiDiPipe != null) {
-                MyBiDiPipe.setMessageListener(MyListener);
+            if (_myBiDiPipe != null) {
+                _myBiDiPipe.setMessageListener(MyListener);
                 Tools.PopInformationMessage(Name, "Bidirectional pipe connection established!");
                 while(true) {
                     System.out.println("Input query:");
 
                     BufferedReader bfr = new BufferedReader(isr);
                     String query =  bfr.readLine();
+                    // Sleeping for 20 seconds
+                    Tools.GoToSleep(5000);
                     // Sending a query !!!
                     Message MyMessage = new Message();
 
                     StringMessageElement MyStringMessageElement = new StringMessageElement("Query", query, null);
                     MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
-                    MyBiDiPipe.sendMessage(MyMessage);
-
-                    // Sleeping for 20 seconds
-                    Tools.GoToSleep(15000);
+                    _myBiDiPipe.sendMessage(MyMessage);
+                    Tools.GoToSleep(5000);
                 }
             }
 
-            AdelaideDatahandler.CloseNetwork(MyBiDiPipe,MyNetworkManager,NetPeerGroup,Name);
+            AdelaideDatahandler.CloseNetwork(_myBiDiPipe,MyNetworkManager,NetPeerGroup,Name);
 
         } catch (IOException Ex) {
 

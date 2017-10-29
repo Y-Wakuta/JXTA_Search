@@ -74,7 +74,7 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
 
     public void pipeMsgEvent(PipeMsgEvent PME) {
         try{
-            JDBC jdbc = new JDBC();
+            JDBC jdbc = new JDBC("localhost","5432","quiniseladb");
 
             // We received a message
             Message ReceivedMessage = PME.getMessage();
@@ -146,15 +146,15 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
                 System.out.print("input query:");
                 BufferedReader bfr = new BufferedReader(isr);
                 String query = bfr.readLine();
+                // Sleeping for 10 seconds
+                Tools.GoToSleep(5000);
                 Message MyMessage = new Message();
                 StringMessageElement MyStringMessageElement = new StringMessageElement("Query", query, null);
 
                 MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
                 _myBiDiPipe.sendMessage(MyMessage);
-
-                // Sleeping for 10 seconds
-                Tools.GoToSleep(15000);
+                Tools.GoToSleep(5000);
             }
 
             QuiniselaDataHandler.CloseNetwork(_myBiDiPipe, _myNetworkManager,Name);
