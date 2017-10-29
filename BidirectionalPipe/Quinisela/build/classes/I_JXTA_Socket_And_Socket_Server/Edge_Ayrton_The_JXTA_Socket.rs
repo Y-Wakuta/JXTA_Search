@@ -1,1 +1,0 @@
-Examples.I_JXTA_Socket_And_Socket_Server.Edge_Ayrton_The_JXTA_Socket

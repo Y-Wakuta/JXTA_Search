@@ -1,1 +1,0 @@
-Examples.K_Service.RendezVous_Joe_The_Astrologer
