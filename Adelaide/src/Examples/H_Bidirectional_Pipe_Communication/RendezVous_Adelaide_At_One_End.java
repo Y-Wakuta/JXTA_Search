@@ -70,18 +70,35 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
     public static final PeerID PID = IDFactory.newPeerID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
 
+    private static JxtaBiDiPipe _myBiDiPipe = null;
+
     public void pipeMsgEvent(PipeMsgEvent PME) {
+        try{
+            JDBC jdbc = new JDBC();
+            // We received a message
+            Message ReceivedMessage = PME.getMessage();
+            String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult").toString();
+            if(TheText != null){
+                String[] texts = TheText.split("\n");
+                for (String text:texts) {
+                    System.out.println(text);
+                }
+                return;
+            }else {
+                TheText = ReceivedMessage.getMessageElement("DummyNameSpace","Query").toString();
+                // Notifying the user
+                String result= jdbc.Deserialize(jdbc.ExecSql(TheText));
 
-        // We received a message
-        Message ReceivedMessage = PME.getMessage();
-        String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult").toString();
-        String[] texts = TheText.split("\n");
-        for (String text:texts) {
-            System.out.println(text);
+                Message MyMessage = new Message();
+                StringMessageElement MyStringMessageElement = new StringMessageElement("QueryResult", result, null);
+
+                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
+
+                _myBiDiPipe.sendMessage(MyMessage);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
-        // Notifying the user
-//        Tools.PopInformationMessage(Name, "Received message:\n\n" + TheText);
-
     }
 
     public static PipeAdvertisement GetPipeAdvertisement() {
@@ -156,7 +173,7 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
                     MyBiDiPipe.sendMessage(MyMessage);
 
                     // Sleeping for 20 seconds
-                    Tools.GoToSleep(20000);
+                    Tools.GoToSleep(15000);
                 }
             }
 

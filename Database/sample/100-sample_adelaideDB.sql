@@ -1,4 +1,6 @@
-insert into master_table values
+\c adelaidedb
+
+insert into master values
 (1,'1111','顧客1'),
 (2,'2222','顧客2'),
 (3,'3333','顧客3'),

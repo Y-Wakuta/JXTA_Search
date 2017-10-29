@@ -68,7 +68,6 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
 
     private static  PipeMsgListener _myListener =new Edge_Quinisela_At_The_Other_End();
-
     private static PeerGroup _netPeerGroup = null;
     private static NetworkManager _myNetworkManager = null;
     private static JxtaBiDiPipe _myBiDiPipe = null;
@@ -80,18 +79,24 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
             // We received a message
             Message ReceivedMessage = PME.getMessage();
             String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "Query").toString();
-            // Notifying the user
-            String result= jdbc.Deserialize(jdbc.ExecSql(TheText));
+            if(TheText == null){
+                String[] texts = TheText.split("\n");
+                for (String text:texts) {
+                    System.out.println(text);
+                }
+                return;
+            }else {
+                TheText = ReceivedMessage.getMessageElement("DummyNameSpace","Query").toString();
+                // Notifying the user
+                String result= jdbc.Deserialize(jdbc.ExecSql(TheText));
 
-            Message MyMessage = new Message();
-            StringMessageElement MyStringMessageElement = new StringMessageElement("QueryResult", result, null);
+                Message MyMessage = new Message();
+                StringMessageElement MyStringMessageElement = new StringMessageElement("QueryResult", result, null);
 
-            MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
+                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
-            _myBiDiPipe.sendMessage(MyMessage);
-
-            Tools.GoToSleep(20000);
-
+                _myBiDiPipe.sendMessage(MyMessage);
+            }
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -149,7 +154,7 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
                 _myBiDiPipe.sendMessage(MyMessage);
 
                 // Sleeping for 10 seconds
-                Tools.GoToSleep(10000);
+                Tools.GoToSleep(15000);
             }
 
             QuiniselaDataHandler.CloseNetwork(_myBiDiPipe, _myNetworkManager,Name);

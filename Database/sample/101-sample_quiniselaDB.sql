@@ -1,3 +1,5 @@
+\c quiniseladb
+
 insert into student (code,name) values
 ('1111','生徒1'),
 ('2222','生徒2'),

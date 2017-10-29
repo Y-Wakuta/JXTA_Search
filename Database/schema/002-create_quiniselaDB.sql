@@ -1,6 +1,9 @@
 --drop table student;
 --drop table teacher;
 
+create database QuiniselaDB;
+\c quiniseladb
+
 create SEQUENCE id_student_seq
     start with 1
     increment by 1
@@ -27,3 +30,5 @@ create table student_teacher(
     student_code text REFERENCES student(code),
     teacher_code text REFERENCES teacher(code)
 );
+
+\c postgres

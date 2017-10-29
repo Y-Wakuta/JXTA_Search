@@ -1,16 +1,16 @@
 
 package Examples.H_Bidirectional_Pipe_Communication;
 // To change this license header, choose License Headers in Project Properties.
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+        import java.sql.Connection;
+        import java.sql.DriverManager;
+        import java.sql.ResultSet;
+        import java.sql.ResultSetMetaData;
+        import java.sql.SQLException;
+        import java.sql.Statement;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.logging.Level;
+        import java.util.logging.Logger;
 
 public class JDBC {
     Connection connection = null;
@@ -23,7 +23,7 @@ public class JDBC {
             // 接続
             //-----------------
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/adelaidedb", // "jdbc:postgresql://[場所(Domain)]:[ポート番号]/[DB名]"
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/quiniseladb", // "jdbc:postgresql://[場所(Domain)]:[ポート番号]/[DB名]"
                     "postgres", // ログインロール
                     "yusuke"); // パスワード
             statement = connection.createStatement();
@@ -56,24 +56,20 @@ public class JDBC {
         return fields;
     }
 
-    public void Deserialize(List<String> fields) throws Exception {
+    public String Deserialize(List<String> fields) throws Exception {
+        String queryResult = "";
         try {
             //結果の出力
-            int rowCount = 0;
             while (resultSet.next()) {
-                rowCount++;
-
-                System.out.println("---------------------------------------------------");
-                System.out.println("--- Rows:" + rowCount);
-                System.out.println("---------------------------------------------------");
-
                 //値は、「resultSet.getString(<フィールド名>)」で取得する。
                 for (String field : fields) {
-                    System.out.println(field + ":" + resultSet.getString(field));
+                    queryResult +=field + ":" + resultSet.getString(field) +"\n";
                 }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }finally{
+            return queryResult;
         }
     }
 
