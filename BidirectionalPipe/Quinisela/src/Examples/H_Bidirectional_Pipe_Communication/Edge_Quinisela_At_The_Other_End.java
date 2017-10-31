@@ -47,6 +47,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
+import java.util.Optional;
+
 import net.jxta.endpoint.Message;
 import net.jxta.endpoint.StringMessageElement;
 import net.jxta.exception.PeerGroupException;
@@ -78,8 +80,10 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
 
             // We received a message
             Message ReceivedMessage = PME.getMessage();
-            String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "Query").toString();
-            if(TheText == null){
+            String TheText = Optional.ofNullable(ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult"))
+                               .map(t -> t.toString())
+                                .orElse(null);
+            if(TheText != null){
                 String[] texts = TheText.split("\n");
                 for (String text:texts) {
                     System.out.println(text);

@@ -44,6 +44,8 @@ import Examples.Z_Tools_And_Others.Tools;
 import java.io.File;
 import java.io.*;
 import java.io.IOException;
+import java.util.Optional;
+
 import net.jxta.document.AdvertisementFactory;
 import net.jxta.endpoint.Message;
 import net.jxta.endpoint.StringMessageElement;
@@ -77,8 +79,10 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
             JDBC jdbc = new JDBC("localhost","5432","adelaidedb");
             // We received a message
             Message ReceivedMessage = PME.getMessage();
-            String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "Query").toString();
-            if(TheText == null){
+            String TheText = Optional.ofNullable( ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult"))
+                    .map(t->t.toString())
+                    .orElse(null);
+            if(TheText != null){
                 String[] texts = TheText.split("\n");
                 for (String text:texts) {
                     System.out.println(text);
