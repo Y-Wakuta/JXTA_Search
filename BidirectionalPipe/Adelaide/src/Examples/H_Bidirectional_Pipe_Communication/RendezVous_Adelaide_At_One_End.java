@@ -168,8 +168,6 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
                     BufferedReader bfr = new BufferedReader(isr);
                     String query =  bfr.readLine();
-                    // Sleeping for 20 seconds
-                    Tools.GoToSleep(5000);
                     // Sending a query !!!
                     Message MyMessage = new Message();
 
@@ -177,7 +175,6 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
                     MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
                     _myBiDiPipe.sendMessage(MyMessage);
-                    Tools.GoToSleep(5000);
                 }
             }
 
