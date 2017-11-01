@@ -28,6 +28,3 @@ hs_err_pid*
 
 #setting files?
 *.xml
-*.iml
-*.form
-*.mf
