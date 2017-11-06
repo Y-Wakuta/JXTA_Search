@@ -69,7 +69,7 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
     public static final PeerID PID = IDFactory.newPeerID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
 
-    private static  PipeMsgListener _myListener =new Edge_Quinisela_At_The_Other_End();
+    private static  PipeMsgListener _myListener = new Edge_Quinisela_At_The_Other_End();
     private static PeerGroup _netPeerGroup = null;
     private static NetworkManager _myNetworkManager = null;
     private static JxtaBiDiPipe _myBiDiPipe = null;
