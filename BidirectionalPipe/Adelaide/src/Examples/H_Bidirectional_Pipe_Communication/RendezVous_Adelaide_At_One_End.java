@@ -64,6 +64,8 @@ import net.jxta.protocol.PipeAdvertisement;
 import net.jxta.util.JxtaBiDiPipe;
 import net.jxta.util.JxtaServerPipe;
 
+import javax.sound.midi.SysexMessage;
+
 public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
     // Static attributes
@@ -125,7 +127,8 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
         try {
 
             // Removing any existing configuration?
-            Tools.CheckForExistingConfigurationDeletion(Name, ConfigurationFile);
+            System.out.println("Delete Configuration");
+            NetworkManager.RecursiveDelete(ConfigurationFile);
 
             // Creation of network manager
             NetworkManager MyNetworkManager = new NetworkManager(NetworkManager.ConfigMode.RENDEZVOUS,
@@ -141,20 +144,23 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
             MyNetworkConfigurator.setTcpOutgoing(true);
 
             // Setting the Peer ID
-            Tools.PopInformationMessage(Name, "Setting the peer ID to :\n\n" + PID.toString());
+            System.out.println(Name+"Setting the peer ID to :\n\n" + PID.toString());
             MyNetworkConfigurator.setPeerID(PID);
 
             // Starting the JXTA network
-            Tools.PopInformationMessage(Name, "Start the JXTA network");
+            System.out.println(Name+ "Start the JXTA network");
+
             PeerGroup NetPeerGroup = MyNetworkManager.startNetwork();
 
             // Waiting for other peers to connect to JXTA
-            Tools.PopInformationMessage(Name, "Waiting for other peers to connect to JXTA");
+            //Tools.PopInformationMessage(Name, "Waiting for other peers to connect to JXTA");
+            System.out.println(Name+ "Waiting for other peers to connect to JXTA");
 
             // Preparing the listener and creating the BiDiPipe
             PipeMsgListener MyListener = new RendezVous_Adelaide_At_One_End();
             JxtaServerPipe MyBiDiPipeServer = new JxtaServerPipe(NetPeerGroup, GetPipeAdvertisement());
-            Tools.PopInformationMessage(Name, "Bidirectional pipe server created!");
+            //   Tools.PopInformationMessage(Name, "Bidirectional pipe server created!");
+            System.out.println(Name+ "Bidirectional pipe server created!");
             MyBiDiPipeServer.setPipeTimeout(30000);
 
             _myBiDiPipe = MyBiDiPipeServer.accept();
@@ -162,7 +168,8 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
             if (_myBiDiPipe != null) {
                 _myBiDiPipe.setMessageListener(MyListener);
-                Tools.PopInformationMessage(Name, "Bidirectional pipe connection established!");
+                //Tools.PopInformationMessage(Name, "Bidirectional pipe connection established!");
+                System.out.println(Name+ "Bidirectional pipe connection established!");
                 while(true) {
                     System.out.println("Input query:");
 
@@ -182,11 +189,11 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
         } catch (IOException Ex) {
 
-            Tools.PopErrorMessage(Name, Ex.toString());
+            System.out.println(Name+Ex.toString());
 
         } catch (PeerGroupException Ex) {
 
-            Tools.PopErrorMessage(Name, Ex.toString());
+            System.out.println(Name+Ex.toString());
 
         }
 

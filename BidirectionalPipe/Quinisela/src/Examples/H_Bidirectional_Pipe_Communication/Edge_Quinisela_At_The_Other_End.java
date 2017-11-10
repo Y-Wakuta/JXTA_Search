@@ -111,7 +111,8 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
         try {
 
             // Removing any existing configuration?
-            Tools.CheckForExistingConfigurationDeletion(Name, ConfigurationFile);
+            System.out.println("Delete Configuration");
+            NetworkManager.RecursiveDelete(ConfigurationFile);
 
             // Creation of network manager
             _myNetworkManager = new NetworkManager(NetworkManager.ConfigMode.EDGE,
@@ -132,11 +133,11 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
             MyNetworkConfigurator.setTcpOutgoing(true);
 
             // Setting the Peer ID
-            Tools.PopInformationMessage(Name, "Setting the peer ID to :\n\n" + PID.toString());
+            System.out.println(Name+"Setting the peer ID to :\n\n" + PID.toString());
             MyNetworkConfigurator.setPeerID(PID);
 
             // Starting the JXTA network
-            Tools.PopInformationMessage(Name, "Start the JXTA network and to wait for a rendezvous connection with\n"
+            System.out.println(Name+ "Start the JXTA network and to wait for a rendezvous connection with\n"
                     + RendezVous_Adelaide_At_One_End.Name + " for maximum 2 minutes");
             _netPeerGroup = _myNetworkManager.startNetwork();
             InitNetwork(_myNetworkManager, _netPeerGroup);
@@ -145,7 +146,7 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
             InputStreamReader isr = new InputStreamReader(System.in);
 
             if(_myBiDiPipe.isBound())
-                Tools.PopInformationMessage(Name, "Bidirectional pipe created!");
+           System.out.println(Name+ "Bidirectional pipe created!");
             while (_myBiDiPipe.isBound()) {
                 System.out.print("input query:");
                 BufferedReader bfr = new BufferedReader(isr);
@@ -174,9 +175,9 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
         peerGroup.getRendezVousService().setAutoStart(false);
 
         if (net.waitForRendezvousConnection(120000)) {
-            Tools.popConnectedRendezvous(peerGroup.getRendezVousService(),Name);
+            Tools.WriteConnectedRendezvous(peerGroup.getRendezVousService(),Name);
         } else {
-            Tools.PopInformationMessage(Name, "Did not connect to a rendezvous");
+           System.out.println(Name+"Did not connect to a rendezvous");
         }
 
     }
