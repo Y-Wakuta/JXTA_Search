@@ -185,8 +185,18 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
                 }
             }
 
-            AdelaideDatahandler.CloseNetwork(_myBiDiPipe,MyNetworkManager,NetPeerGroup,Name);
+            try {
+                _myBiDiPipe.close();
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
 
+            // Retrieving connected peers
+            System.out.println(NetPeerGroup.getRendezVousService()+Name);
+
+            // Stopping the network
+            System.out.println(Name+ "Stop the JXTA network");
+            MyNetworkManager.stopNetwork();
         } catch (IOException Ex) {
 
             System.out.println(Name+Ex.toString());
