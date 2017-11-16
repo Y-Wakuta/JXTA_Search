@@ -1,6 +1,12 @@
 version: '2'
 
 services:
-  db:
-    build: ./db
+  adelaide_db:
+    build: ./AdelaideDB
+    ports:
+      - "5432:5432"
+  quinisela_deb:
+    build: ./QuiniselaDB
+    ports:
+      - "5434:5432"
   
