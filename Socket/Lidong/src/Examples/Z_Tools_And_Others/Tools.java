@@ -38,7 +38,7 @@
  *  
  */
 
-package Z_Tools_And_Others;
+package Examples.Z_Tools_And_Others;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,167 +64,146 @@ public class Tools {
     public Tools() {
 
     }
-
+    
     public static void popConnectedRendezvous(RendezVousService TheRendezVous, String Name) {
-
+        
         List<PeerID> TheList = TheRendezVous.getLocalRendezVousView();
         Iterator<PeerID> Iter = TheList.iterator();
         int Count = 0;
-
+        
         while (Iter.hasNext()) {
-
+            
             Count = Count + 1;
 
             PopInformationMessage(Name, "Connected to rendezvous:\n\n"
                     + Iter.next().toString());
-
+            
         }
-
+        
         if (Count==0) {
-
+            
             PopInformationMessage(Name, "No rendezvous connected to this rendezvous!");
-
+            
         }
 
     }
-    public static void WriteConnectedRendezvous(RendezVousService TheRendezVous, String Name) {
-
-        List<PeerID> TheList = TheRendezVous.getLocalRendezVousView();
-        Iterator<PeerID> Iter = TheList.iterator();
-        int Count = 0;
-
-        while (Iter.hasNext()) {
-
-            Count = Count + 1;
-
-            System.out.println(Name+ "Connected to rendezvous:\n\n"
-                    + Iter.next().toString());
-
-        }
-
-        if (Count==0) {
-
-            PopInformationMessage(Name, "No rendezvous connected to this rendezvous!");
-
-        }
-
-    }
+    
     public static void popConnectedPeers(RendezVousService TheRendezVous, String Name) {
-
+        
         List<PeerID> TheList = TheRendezVous.getLocalRendezVousView();
         Iterator<PeerID> Iter = TheList.iterator();
         int Count = 0;
-
+        
         while (Iter.hasNext()) {
-
+            
             Count = Count + 1;
-
+            
             PopInformationMessage(Name, "Peer connected to this rendezvous:\n\n"
                     + Iter.next().toString());
-
+            
         }
-
+        
         if (Count==0) {
-
+            
             PopInformationMessage(Name, "No peers connected to this rendezvous!");
-
+            
         }
-
+        
     }
-
+    
     public static void CheckForMulticastUsage(String Name, NetworkConfigurator TheNC) throws IOException {
-
+        
         if (JOptionPane.YES_OPTION==PopYesNoQuestion(Name, "Do you want to enable multicasting?")) {
 
             TheNC.setUseMulticast(true);
-
+            
         } else {
-
+            
             TheNC.setUseMulticast(false);
+            
+        }
+        
+    }
+    
+    public static void CheckForRendezVousSeedAddition(String Name, String TheSeed, NetworkConfigurator TheNC) {
+        
+        if (JOptionPane.YES_OPTION==PopYesNoQuestion(Name, "Do you want to add seed: " + TheSeed + "?")) {
 
+            URI LocalSeedingRendezVousURI = URI.create(TheSeed);
+            TheNC.addSeedRendezvous(LocalSeedingRendezVousURI);
+            
         }
 
-    }
-
-    public static void CheckForRendezVousSeedAddition(String Name, String TheSeed, NetworkConfigurator TheNC) {
-
-        //   if (JOptionPane.YES_OPTION==PopYesNoQuestion(Name, "Do you want to add seed: " + TheSeed + "?")) {
-        System.out.println(Name +"add seed:"+TheSeed);
-        URI LocalSeedingRendezVousURI = URI.create(TheSeed);
-        TheNC.addSeedRendezvous(LocalSeedingRendezVousURI);
-
-        // }
-
     };
-
+    
     public static void PopInformationMessage(String Name, String Message) {
-
+        
         JOptionPane.showMessageDialog(null, Message, Name, JOptionPane.INFORMATION_MESSAGE);
-
+        
     }
-
+    
     public static void PopErrorMessage(String Name,String Message) {
-
+        
         JOptionPane.showMessageDialog(null, Message, Name, JOptionPane.ERROR_MESSAGE);
-
+        
     }
-
+    
     public static void PopWarningMessage(String Name, String Message) {
-
+        
         JOptionPane.showMessageDialog(null, Message, Name, JOptionPane.WARNING_MESSAGE);
-
+        
     }
-
+    
     public static int PopYesNoQuestion(String Name, String Question) {
-
+        
         return JOptionPane.showConfirmDialog(null, Question, Name, JOptionPane.YES_NO_OPTION);
-
+        
     }
-
+    
     public static void CheckForExistingConfigurationDeletion(String Name, File ConfigurationFile) throws IOException {
-
+        
         if (JOptionPane.YES_OPTION==PopYesNoQuestion(Name, "Do you want to delete the existing configuration in:\n\n"
                 + ConfigurationFile.getCanonicalPath())) {
 
             NetworkManager.RecursiveDelete(ConfigurationFile);
-
+            
         }
-
+        
     }
-
+    
     public static void DisplayMessageContent(String Name, Message TheMessage) {
-
+        
         try {
-
+            
             String ToDisplay = "--- Message Start ---\n";
 
             ElementIterator MyElementIterator = TheMessage.getMessageElements();
-
+            
             while (MyElementIterator.hasNext()) {
-
+                
                 MessageElement MyMessageElement = MyElementIterator.next();
-
+                
                 ToDisplay = ToDisplay + "Element : " +
                         MyElementIterator.getNamespace() + " :: "
-                        + MyMessageElement.getElementName()
+                        + MyMessageElement.getElementName() 
                         + "  [" + MyMessageElement + "]\n";
-
+                
             }
-
+            
             ToDisplay = ToDisplay + "--- Message End ---";
-
+            
             PopInformationMessage(Name,ToDisplay);
-
+            
         } catch (Exception Ex) {
-
+            
             PopErrorMessage(Name, Ex.toString());
-
+            
         }
-
+        
     }
-
+    
     public static final void GoToSleep(long Duration) {
-
+        
         long Delay = System.currentTimeMillis() + Duration;
 
         while (System.currentTimeMillis()<Delay) {
@@ -234,7 +213,7 @@ public class Tools {
                 // We don't care
             }
         }
-
+        
     }
 
     /**

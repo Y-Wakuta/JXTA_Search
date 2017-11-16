@@ -38,17 +38,12 @@
  *  
  */
 
-package H_Bidirectional_Pipe_Communication;
+package Examples.H_Bidirectional_Pipe_Communication;
 
-import Z_Tools_And_Others.Tools;
-
-import java.io.BufferedReader;
+import Examples.Z_Tools_And_Others.Tools;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.InetAddress;
-import java.util.Optional;
-
 import net.jxta.endpoint.Message;
 import net.jxta.endpoint.StringMessageElement;
 import net.jxta.exception.PeerGroupException;
@@ -63,64 +58,37 @@ import net.jxta.platform.NetworkManager;
 import net.jxta.util.JxtaBiDiPipe;
 
 public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
-
+    
     public static final String Name = "Edge Quinisela, at the other end";
     public static final int TcpPort = 9725;
     public static final PeerID PID = IDFactory.newPeerID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
-
-    private static  PipeMsgListener _myListener = new Edge_Quinisela_At_The_Other_End();
-    private static PeerGroup _netPeerGroup = null;
-    private static NetworkManager _myNetworkManager = null;
-    private static JxtaBiDiPipe _myBiDiPipe = null;
-
+    
     public void pipeMsgEvent(PipeMsgEvent PME) {
-        try{
-            JDBC jdbc = new JDBC("localhost","5432","quiniseladb");
+        
+        // We received a message
+        Message ReceivedMessage = PME.getMessage();
+        String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "HelloElement").toString();
 
-            // We received a message
-            Message ReceivedMessage = PME.getMessage();
-            String TheText = Optional.ofNullable(ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult"))
-                               .map(t -> t.toString())
-                                .orElse(null);
-            if(TheText != null){
-                String[] texts = TheText.split("\n");
-                for (String text:texts) {
-                    System.out.println(text);
-                }
-                return;
-            }else {
-                TheText = ReceivedMessage.getMessageElement("DummyNameSpace","Query").toString();
-                // Notifying the user
-                String result= jdbc.Deserialize(jdbc.ExecSql(TheText));
-
-                Message MyMessage = new Message();
-                StringMessageElement MyStringMessageElement = new StringMessageElement("QueryResult", result, null);
-
-                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
-
-                _myBiDiPipe.sendMessage(MyMessage);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        // Notifying the user
+        Tools.PopInformationMessage(Name, "Received message:\n\n" + TheText);
+        
     }
 
     public static void main(String[] args) {
-
+        
         try {
-
+            
             // Removing any existing configuration?
-            System.out.println("Delete Configuration");
-            NetworkManager.RecursiveDelete(ConfigurationFile);
-
+            Tools.CheckForExistingConfigurationDeletion(Name, ConfigurationFile);
+            
             // Creation of network manager
-            _myNetworkManager = new NetworkManager(NetworkManager.ConfigMode.EDGE,
+            NetworkManager MyNetworkManager = new NetworkManager(NetworkManager.ConfigMode.EDGE,
                     Name, ConfigurationFile.toURI());
-
+            
             // Retrieving the network configurator
-            NetworkConfigurator MyNetworkConfigurator = _myNetworkManager.getConfigurator();
-
+            NetworkConfigurator MyNetworkConfigurator = MyNetworkManager.getConfigurator();
+            
             // Checking if RendezVous_Adelaide_At_One_End should be a seed
             MyNetworkConfigurator.clearRendezvousSeeds();
             String TheSeed = "tcp://" + InetAddress.getLocalHost().getHostAddress() + ":" + RendezVous_Adelaide_At_One_End.TcpPort;
@@ -133,52 +101,72 @@ public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
             MyNetworkConfigurator.setTcpOutgoing(true);
 
             // Setting the Peer ID
-            System.out.println(Name+"Setting the peer ID to :\n\n" + PID.toString());
+            Tools.PopInformationMessage(Name, "Setting the peer ID to :\n\n" + PID.toString());
             MyNetworkConfigurator.setPeerID(PID);
 
             // Starting the JXTA network
-            System.out.println(Name+ "Start the JXTA network and to wait for a rendezvous connection with\n"
+            Tools.PopInformationMessage(Name, "Start the JXTA network and to wait for a rendezvous connection with\n"
                     + RendezVous_Adelaide_At_One_End.Name + " for maximum 2 minutes");
-            _netPeerGroup = _myNetworkManager.startNetwork();
-            InitNetwork(_myNetworkManager, _netPeerGroup);
-            // Preparing the listener and Creating the BiDiPipe
-            _myBiDiPipe = new JxtaBiDiPipe(_netPeerGroup, RendezVous_Adelaide_At_One_End.GetPipeAdvertisement(), 30000, _myListener);
-            InputStreamReader isr = new InputStreamReader(System.in);
-
-            if(_myBiDiPipe.isBound())
-           System.out.println(Name+ "Bidirectional pipe created!");
-            while (_myBiDiPipe.isBound()) {
-                System.out.print("input query:");
-                BufferedReader bfr = new BufferedReader(isr);
-                String query = bfr.readLine();
-                Message MyMessage = new Message();
-                StringMessageElement MyStringMessageElement = new StringMessageElement("Query", query, null);
-
-                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
-
-                _myBiDiPipe.sendMessage(MyMessage);
+            PeerGroup NetPeerGroup = MyNetworkManager.startNetwork();
+            
+            // Disabling any rendezvous autostart
+            NetPeerGroup.getRendezVousService().setAutoStart(false);
+            
+            if (MyNetworkManager.waitForRendezvousConnection(120000)) {
+                Tools.popConnectedRendezvous(NetPeerGroup.getRendezVousService(),Name);
+            } else {
+                Tools.PopInformationMessage(Name, "Did not connect to a rendezvous");
             }
 
-            QuiniselaDataHandler.CloseNetwork(_myBiDiPipe, _myNetworkManager,Name);
+            // Preparing the listener and Creating the BiDiPipe
+            PipeMsgListener MyListener = new Edge_Quinisela_At_The_Other_End();
+            JxtaBiDiPipe MyBiDiPipe = new JxtaBiDiPipe(NetPeerGroup, RendezVous_Adelaide_At_One_End.GetPipeAdvertisement(), 30000, MyListener);
+            
+            if (MyBiDiPipe.isBound()) {
+            
+                Tools.PopInformationMessage(Name, "Bidirectional pipe created!");
 
+                // Sending a hello message !!!
+                Message MyMessage = new Message();
+                StringMessageElement MyStringMessageElement = new StringMessageElement("HelloElement", "Hello from " + Name, null);
+                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
+
+                MyBiDiPipe.sendMessage(MyMessage);
+
+                // Sleeping for 10 seconds
+                Tools.GoToSleep(10000);
+            
+                // Sending a goodbye message !!!
+                MyMessage = new Message();
+                MyStringMessageElement = new StringMessageElement("HelloElement", "Goodbye from " + Name, null);
+                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
+
+                MyBiDiPipe.sendMessage(MyMessage);
+            
+                // Sleeping for 10 seconds
+                Tools.GoToSleep(10000);
+                
+            }
+            
+            // Closing the bidipipe
+            MyBiDiPipe.close();
+            
+            // Stopping the network
+            Tools.PopInformationMessage(Name, "Stop the JXTA network");
+            MyNetworkManager.stopNetwork();
+            
         } catch (IOException Ex) {
-
+            
             // Raised when access to local file and directories caused an error
             Tools.PopErrorMessage(Name, Ex.toString());
-        }catch (PeerGroupException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static void InitNetwork(NetworkManager net,PeerGroup peerGroup){
-        // Disabling any rendezvous autostart
-        peerGroup.getRendezVousService().setAutoStart(false);
-
-        if (net.waitForRendezvousConnection(120000)) {
-            Tools.WriteConnectedRendezvous(peerGroup.getRendezVousService(),Name);
-        } else {
-           System.out.println(Name+"Did not connect to a rendezvous");
+            
+        } catch (PeerGroupException Ex) {
+            
+            // Raised when the net peer group could not be created
+            Tools.PopErrorMessage(Name, Ex.toString());
+            
         }
 
     }
+
 }

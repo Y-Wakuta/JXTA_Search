@@ -38,19 +38,16 @@
  *  
  */
 
-package Examples.H_Bidirectional_Pipe_Communication;
+package Examples.G_Simple_Pipe_Communication;
 
 import Examples.Z_Tools_And_Others.Tools;
 import java.io.File;
-import java.io.*;
 import java.io.IOException;
-import java.util.Optional;
-
 import net.jxta.document.AdvertisementFactory;
 import net.jxta.endpoint.Message;
-import net.jxta.endpoint.StringMessageElement;
 import net.jxta.exception.PeerGroupException;
 import net.jxta.id.IDFactory;
+import net.jxta.membership.MembershipService;
 import net.jxta.peer.PeerID;
 import net.jxta.peergroup.PeerGroup;
 import net.jxta.peergroup.PeerGroupID;
@@ -61,82 +58,59 @@ import net.jxta.pipe.PipeService;
 import net.jxta.platform.NetworkConfigurator;
 import net.jxta.platform.NetworkManager;
 import net.jxta.protocol.PipeAdvertisement;
-import net.jxta.util.JxtaBiDiPipe;
-import net.jxta.util.JxtaServerPipe;
 
-import javax.sound.midi.SysexMessage;
-
-public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
+public class RendezVous_Chandra_Receiving_Messages implements PipeMsgListener {
+    
+    // PipeService.UnicastType or PipeService.UnicastSecureType or PipeService.PropagateType
+    public static final String PipeType = PipeService.UnicastType;
 
     // Static attributes
-    public static final String Name = "RendezVous Adelaide, at one end";
-    public static final int TcpPort = 9726;
+    public static final String Name = "RendezVous Chandra, Receiving Messages";
+    public static final int TcpPort = 9722;
     public static final PeerID PID = IDFactory.newPeerID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
 
-    private static JxtaBiDiPipe _myBiDiPipe = null;
-
+    // Catching messages
     public void pipeMsgEvent(PipeMsgEvent PME) {
-        try{
-            JDBC jdbc = new JDBC("localhost","5432","adelaidedb");
-            // We received a message
-            Message ReceivedMessage = PME.getMessage();
-            String TheText = Optional.ofNullable( ReceivedMessage.getMessageElement("DummyNameSpace", "QueryResult"))
-                    .map(t->t.toString())
-                    .orElse(null);
-            if(TheText != null){
-                String[] texts = TheText.split("\n");
-                for (String text:texts) {
-                    System.out.println(text);
-                }
-                return;
-            }else {
-                TheText = ReceivedMessage.getMessageElement("DummyNameSpace","Query").toString();
-                // Notifying the user
-                String result= jdbc.Deserialize(jdbc.ExecSql(TheText));
+        
+        // We received a message
+        Message ReceivedMessage = PME.getMessage();
+        String TheText = ReceivedMessage.getMessageElement("DummyNameSpace", "HelloElement").toString();
 
-                Message MyMessage = new Message();
-                StringMessageElement MyStringMessageElement = new StringMessageElement("QueryResult", result, null);
-
-                MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
-
-                _myBiDiPipe.sendMessage(MyMessage);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        // Notifying the user
+        Tools.PopInformationMessage(Name, "Received message:\n\n" + TheText);
+        
     }
-
+    
     public static PipeAdvertisement GetPipeAdvertisement() {
-
+        
         // Creating a Pipe Advertisement
         PipeAdvertisement MyPipeAdvertisement = (PipeAdvertisement) AdvertisementFactory.newAdvertisement(PipeAdvertisement.getAdvertisementType());
         PipeID MyPipeID = IDFactory.newPipeID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
 
         MyPipeAdvertisement.setPipeID(MyPipeID);
-        MyPipeAdvertisement.setType(PipeService.UnicastType);
-        MyPipeAdvertisement.setName("Test BidiPipe");
+        MyPipeAdvertisement.setType(PipeType);
+        MyPipeAdvertisement.setName("Test Pipe");
         MyPipeAdvertisement.setDescription("Created by " + Name);
-
+        
         return MyPipeAdvertisement;
-
+        
     }
-
+    
     public static void main(String[] args) {
-
+        
         try {
-
+            
             // Removing any existing configuration?
-            System.out.println("Delete Configuration");
-            NetworkManager.RecursiveDelete(ConfigurationFile);
-
+            Tools.CheckForExistingConfigurationDeletion(Name, ConfigurationFile);
+            
             // Creation of network manager
             NetworkManager MyNetworkManager = new NetworkManager(NetworkManager.ConfigMode.RENDEZVOUS,
                     Name, ConfigurationFile.toURI());
-
+            
             // Retrieving the network configurator
             NetworkConfigurator MyNetworkConfigurator = MyNetworkManager.getConfigurator();
-
+            
             // Setting more configuration
             MyNetworkConfigurator.setTcpPort(TcpPort);
             MyNetworkConfigurator.setTcpEnabled(true);
@@ -144,57 +118,50 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
             MyNetworkConfigurator.setTcpOutgoing(true);
 
             // Setting the Peer ID
-            System.out.println(Name+"Setting the peer ID to :\n\n" + PID.toString());
+            Tools.PopInformationMessage(Name, "Setting the peer ID to :\n\n" + PID.toString());
             MyNetworkConfigurator.setPeerID(PID);
+            
+            // Saving the configuration
+            MyNetworkConfigurator.save();
 
             // Starting the JXTA network
-            System.out.println(Name+ "Start the JXTA network");
-
+            Tools.PopInformationMessage(Name, "Start the JXTA network");
             PeerGroup NetPeerGroup = MyNetworkManager.startNetwork();
+            
+            // Retrieving the PSE membership service
+            MembershipService MyMembershipService = NetPeerGroup.getMembershipService();
 
             // Waiting for other peers to connect to JXTA
-            //Tools.PopInformationMessage(Name, "Waiting for other peers to connect to JXTA");
-            System.out.println(Name+ "Waiting for other peers to connect to JXTA");
+            Tools.PopInformationMessage(Name, "Waiting for other peers to connect to JXTA");
 
-            // Preparing the listener and creating the BiDiPipe
-            PipeMsgListener MyListener = new RendezVous_Adelaide_At_One_End();
-            JxtaServerPipe MyBiDiPipeServer = new JxtaServerPipe(NetPeerGroup, GetPipeAdvertisement());
-            //   Tools.PopInformationMessage(Name, "Bidirectional pipe server created!");
-            System.out.println(Name+ "Bidirectional pipe server created!");
-            MyBiDiPipeServer.setPipeTimeout(30000);
+            // Creating an input pipe
+            PipeService MyPipeService = NetPeerGroup.getPipeService();
+            MyPipeService.createInputPipe(GetPipeAdvertisement(), new RendezVous_Chandra_Receiving_Messages());
+            
+            // Displaying pipe advertisement to identify potential compilation issues
+            System.out.println(RendezVous_Chandra_Receiving_Messages.GetPipeAdvertisement().toString());
+            
+            // Going to sleep for some time
+            Tools.GoToSleep(60000);
+            
+            // Retrieving connected peers
+            Tools.popConnectedPeers(NetPeerGroup.getRendezVousService(), Name);
+            
+            // Resigning all credentials
+            MyMembershipService.resign();
 
-            _myBiDiPipe = MyBiDiPipeServer.accept();
-            InputStreamReader isr = new InputStreamReader(System.in);
-
-            if (_myBiDiPipe != null) {
-                _myBiDiPipe.setMessageListener(MyListener);
-                //Tools.PopInformationMessage(Name, "Bidirectional pipe connection established!");
-                System.out.println(Name+ "Bidirectional pipe connection established!");
-                while(true) {
-                    System.out.println("Input query:");
-
-                    BufferedReader bfr = new BufferedReader(isr);
-                    String query =  bfr.readLine();
-                    // Sending a query !!!
-                    Message MyMessage = new Message();
-
-                    StringMessageElement MyStringMessageElement = new StringMessageElement("Query", query, null);
-                    MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
-
-                    _myBiDiPipe.sendMessage(MyMessage);
-                }
-            }
-
-            AdelaideDatahandler.CloseNetwork(_myBiDiPipe,MyNetworkManager,NetPeerGroup,Name);
-
+            // Stopping the network
+            Tools.PopInformationMessage(Name, "Stop the JXTA network");
+            MyNetworkManager.stopNetwork();
+            
         } catch (IOException Ex) {
-
-            System.out.println(Name+Ex.toString());
-
+            
+            Tools.PopErrorMessage(Name, Ex.toString());
+            
         } catch (PeerGroupException Ex) {
-
-            System.out.println(Name+Ex.toString());
-
+            
+            Tools.PopErrorMessage(Name, Ex.toString());
+            
         }
 
     }
