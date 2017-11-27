@@ -62,14 +62,14 @@ import net.jxta.platform.NetworkConfigurator;
 import net.jxta.platform.NetworkManager;
 import net.jxta.util.JxtaBiDiPipe;
 
-public class Edge_Quinisela_At_The_Other_End implements PipeMsgListener {
+public class SecondEdge implements PipeMsgListener {
 
-    public static final String Name = "Edge Quinisela, at the other end";
+    public static final String Name = "Second Edge, at the other end";
     public static final int TcpPort = 9725;
     public static final PeerID PID = IDFactory.newPeerID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
 
-    private static  PipeMsgListener _myListener = new Edge_Quinisela_At_The_Other_End();
+    private static  PipeMsgListener _myListener = new SecondEdge();
     private static PeerGroup _netPeerGroup = null;
     private static NetworkManager _myNetworkManager = null;
     private static JxtaBiDiPipe _myBiDiPipe = null;
