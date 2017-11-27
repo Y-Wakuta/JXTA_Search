@@ -193,12 +193,11 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
             }
 
             // Retrieving connected peers
-            Tools.popConnectedPeers(NetPeerGroup.getRendezVousService(), Name);
+            System.out.println(NetPeerGroup.getRendezVousService()+Name);
 
             // Stopping the network
-            Tools.PopInformationMessage(Name, "Stop the JXTA network");
+            System.out.println(Name+ "Stop the JXTA network");
             MyNetworkManager.stopNetwork();
-
         } catch (IOException Ex) {
 
             System.out.println(Name+Ex.toString());
