@@ -2,10 +2,10 @@
 <!DOCTYPE jxta:CP>
 <jxta:CP type="jxta:PlatformConfig" xmlns:jxta="http://jxta.org">
 	<PID>
-		urn:jxta:uuid-59616261646162614E504720503250334564676520514569AE69F3656C612C2003
+		urn:jxta:uuid-59616261646162614E504720503250335365636F6E644045A467E52C2061742003
 	</PID>
 	<Name>
-		Edge Quinisela, at the other end
+		Second Edge, at the other end
 	</Name>
 	<Desc>
 		Created by NetworkManager

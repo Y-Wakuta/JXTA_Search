@@ -2,21 +2,22 @@
 <!DOCTYPE jxta:CP>
 <jxta:CP type="jxta:PlatformConfig" xmlns:jxta="http://jxta.org">
 	<PID>
-		urn:jxta:uuid-59616261646162614E504720503250334564676520514569AE69F3656C612C2003
+		urn:jxta:uuid-59616261646162614E504720503250334564676520434869A869F26F03
 	</PID>
 	<Name>
-		Edge Quinisela, at the other end
+		Edge Chihiro
 	</Name>
 	<Desc>
 		Created by NetworkManager
 	</Desc>
-	<Svc>
+	<Svc disabled="true">
 		<MCID>
 			urn:jxta:uuid-DEADBEEFDEAFBABAFEEDBABE0000001105
 		</MCID>
 		<Parm>
 			<jxta:TransportAdvertisement xmlns:jxta="http://jxta.org" xml:space="preserve" type="jxta:MulticastTransportAdvertisement">
-<Protocol>tcp</Protocol><MulticastAddr>224.0.1.85</MulticastAddr><MulticastPort>1234</MulticastPort><Mcast_Pool_Size>5</Mcast_Pool_Size><MulticastSize>16384</MulticastSize>			</jxta:TransportAdvertisement>
+<Protocol>tcp</Protocol><MulticastOff/><MulticastAddr>224.0.1.85</MulticastAddr><MulticastPort>1234</MulticastPort><Mcast_Pool_Size>5</Mcast_Pool_Size><MulticastSize>16384</MulticastSize>			</jxta:TransportAdvertisement>
+			<isOff/>
 		</Parm>
 	</Svc>
 	<Svc>
@@ -34,7 +35,7 @@
 		</MCID>
 		<Parm>
 			<jxta:TransportAdvertisement xmlns:jxta="http://jxta.org" xml:space="preserve" type="jxta:TCPTransportAdvertisement">
-<Protocol>tcp</Protocol><ConfigMode>auto</ConfigMode><Port>9725</Port>			</jxta:TransportAdvertisement>
+<Protocol>tcp</Protocol><ConfigMode>auto</ConfigMode><Port>9715</Port>			</jxta:TransportAdvertisement>
 		</Parm>
 	</Svc>
 	<Svc>
@@ -49,7 +50,7 @@
 			urn:jxta:uuid-DEADBEEFDEAFBABAFEEDBABE0000000605
 		</MCID>
 		<Parm type="jxta:RdvConfig" xmlns:jxta="http://jxta.org" xml:space="preserve" config="client">
-<seeds><addr>tcp://10.1.0.47:9726</addr></seeds>		</Parm>
+<seeds><addr>tcp://127.0.1.1:9713</addr><addr>tcp://127.0.1.1:9710</addr></seeds>		</Parm>
 	</Svc>
 	<Svc>
 		<MCID>
