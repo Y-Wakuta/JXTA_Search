@@ -74,7 +74,8 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
     public static final PeerID PID = IDFactory.newPeerID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
     public static final File ConfigurationFile = new File("." + System.getProperty("file.separator") + Name);
 
-    private static JxtaBiDiPipe _myBiDiPipe = null;
+    private static JxtaBiDiPipe _myBiDiPipeQuini = null;
+    private static JxtaBiDiPipe _myBiDiPipeSecond = null;
 
     public void pipeMsgEvent(PipeMsgEvent PME) {
         try{
@@ -100,7 +101,7 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
                 MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
-                _myBiDiPipe.sendMessage(MyMessage);
+                _myBiDiPipeQuini.sendMessage(MyMessage);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -158,16 +159,24 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
 
             // Preparing the listener and creating the BiDiPipe
             PipeMsgListener MyListener = new RendezVous_Adelaide_At_One_End();
-            JxtaServerPipe MyBiDiPipeServer = new JxtaServerPipe(NetPeerGroup, GetPipeAdvertisement());
+            JxtaServerPipe MyBiDiPipeServerQuini = new JxtaServerPipe(NetPeerGroup, GetPipeAdvertisement());
+            JxtaServerPipe MyBiDiPipeServerSecond = new JxtaServerPipe(NetPeerGroup, GetPipeAdvertisement());
             //   Tools.PopInformationMessage(Name, "Bidirectional pipe server created!");
             System.out.println(Name+ "Bidirectional pipe server created!");
-            MyBiDiPipeServer.setPipeTimeout(30000);
+            MyBiDiPipeServerQuini.setPipeTimeout(30000);
+            MyBiDiPipeServerSecond.setPipeTimeout(30000);
 
-            _myBiDiPipe = MyBiDiPipeServer.accept();
+            do {
+                if(_myBiDiPipeQuini == null)
+                _myBiDiPipeQuini = MyBiDiPipeServerQuini.accept();
+                if(_myBiDiPipeSecond == null)
+                _myBiDiPipeSecond = MyBiDiPipeServerSecond.accept();
+            }while(_myBiDiPipeSecond != null && _myBiDiPipeSecond != null);
+
             InputStreamReader isr = new InputStreamReader(System.in);
 
-            if (_myBiDiPipe != null) {
-                _myBiDiPipe.setMessageListener(MyListener);
+            if (_myBiDiPipeQuini != null) {
+                _myBiDiPipeQuini.setMessageListener(MyListener);
                 //Tools.PopInformationMessage(Name, "Bidirectional pipe connection established!");
                 System.out.println(Name+ "Bidirectional pipe connection established!");
                 while(true) {
@@ -181,11 +190,16 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
                     StringMessageElement MyStringMessageElement = new StringMessageElement("Query", query, null);
                     MyMessage.addMessageElement("DummyNameSpace", MyStringMessageElement);
 
-                    _myBiDiPipe.sendMessage(MyMessage);
+                    _myBiDiPipeQuini.sendMessage(MyMessage);
                 }
             }
 
-            AdelaideDatahandler.CloseNetwork(_myBiDiPipe,MyNetworkManager,NetPeerGroup,Name);
+            // Closing the bidi pipe server
+            try {
+                _myBiDiPipeQuini.close();
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
 
         } catch (IOException Ex) {
 

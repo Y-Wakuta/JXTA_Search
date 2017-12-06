@@ -87,7 +87,7 @@ public class RendezVous_Adelaide_At_One_End implements PipeMsgListener {
         PipeID MyPipeID = IDFactory.newPipeID(PeerGroupID.defaultNetPeerGroupID, Name.getBytes());
 
         MyPipeAdvertisement.setPipeID(MyPipeID);
-        MyPipeAdvertisement.setType(PipeService.UnicastType);
+        MyPipeAdvertisement.setType(PipeService.PropagateType);
         MyPipeAdvertisement.setName("Test BidiPipe");
         MyPipeAdvertisement.setDescription("Created by " + Name);
         
